@@ -1,3 +1,4 @@
+pip==26.0.1
 attr==0.3.2
 audio.wave==4.0.2
 brotli==1.2.0
