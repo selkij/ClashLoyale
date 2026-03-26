@@ -14,7 +14,7 @@
   "target": "zone",
   "radius":2,
   "spawn_unit":"None",
-  "effect": "frozen"
+  "effect": "frozen2"
 
 
 }

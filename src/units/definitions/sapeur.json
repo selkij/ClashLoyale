@@ -14,5 +14,5 @@
   "target": "zone",
   "radius": 1,
   "spawn_unit": "None",
-  "effect": "None"
+  "effect": "recoil2"
 }

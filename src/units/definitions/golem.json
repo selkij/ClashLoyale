@@ -14,7 +14,10 @@
   "target": "unique",
   "radius":"None",
   "spawn_unit":"min_golem",
-  "effect": "None"
+  "effect": [
+    "recoil3",
+    "resist-recoil1"
+  ]
 
 
 }
