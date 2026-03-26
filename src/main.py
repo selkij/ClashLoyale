@@ -5,6 +5,7 @@ import logging
 
 import input
 import settings
+from music.music import sound_init, play_music
 from utils import log
 
 log.Logger('debug.log', logging.DEBUG) # Will directly populate the logger variable
@@ -25,8 +26,9 @@ def close_game(is_error = False):
 # Pygame setup
 try:
     pygame.init()
-    pygame.mixer.init()
     pygame.font.init()
+
+    sound_init()
 
     pygame.display.set_caption("Clash Loyale")
     icon = pygame.image.load("sprites/game_icon.png") # PyInstaller ?
@@ -68,6 +70,9 @@ try:
 
     log.logger.send("Clash Loyale is ready ! hehehehaw", logging.INFO)
 
+
+    play_music("combat.mp3")
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
@@ -85,3 +90,4 @@ except pygame.error as e:
     log.logger.send(e, logging.CRITICAL)
     close_game(True)
 
+pygame.quit()
