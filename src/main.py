@@ -42,8 +42,9 @@ pygame.display.flip()
 
 # base initialisation
 sound_init()
-# deck_theme()
-hog_rider_sfx()
+#deck_theme()
+combat_theme()
+#hog_rider_sfx()
 #  actually running
 while running:
     for event in pygame.event.get():
