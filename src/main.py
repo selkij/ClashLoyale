@@ -26,6 +26,7 @@ def close_game(is_error = False):
 # Pygame setup
 try:
     pygame.init()
+    input.init()
     pygame.font.init()
 
     sound_init()
@@ -43,11 +44,6 @@ try:
     # Game variables
     background_color = "#202020"
     text_color = "#EEEEEE"
-    green_land_color = "#55D930"
-    green_land_alt_color = "#4CC72A"
-    path_land_color = "#F8B03C"
-    path_land_alt_color = "#E0A036"
-    river_color = "#00A8BD"
 
     log.logger.send("Loading assets", logging.DEBUG)
 
@@ -75,8 +71,9 @@ try:
 
     while running:
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
-                input.handle_inputs(event)
+            # Sub-systems event handling
+            input.handle_events(event)
+
             if event.type == pygame.QUIT:
                 running = False
 
