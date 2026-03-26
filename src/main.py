@@ -55,18 +55,18 @@ try:
     arena_img_size = arena_img.get_size()
     arena_img = pygame.transform.scale(arena_img, (screen.get_width()/2, screen.get_height()))
 
-    font = pygame.font.Font('fonts/YouBlockhead.ttf', 40)
+    # Game variables
+    background_color = "#202020"
+    text_color = "#EEEEEE"
+
+    font = pygame.font.Font('fonts/YouBlockhead.ttf', 30)
     title_text = font.render('Thomate', True, text_color)
     title_rect = title_text.get_rect()
-
     log.logger.send("Drawing arena", logging.DEBUG)
     screen.fill(background_color)
     screen.blit(arena_img, (screen.get_width()/2-arena_img.get_size()[0]/2, 0))
     screen.blit(title_text, title_rect)
     pygame.display.flip()
-
-    start_sound = pygame.mixer.Sound("sounds/spawn_hog_rider.mp3")
-    start_sound.play()
 
     log.logger.send("Clash Loyale is ready ! hehehehaw", logging.INFO)
 
@@ -83,7 +83,8 @@ try:
         # pygame.display.flip()
 
         # Limits FPS to 60
-        dt = clock.tick(60) / 1000
+        delta_time = clock.tick(60) / 1000
+        
 
     close_game()
 except pygame.error as e:
