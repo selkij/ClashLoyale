@@ -1,16 +1,23 @@
+import logging
+
 import pygame
 import os
+
+from utils import log
+
 
 def sound_init():
     """Initialize the mixer."""
     pygame.mixer.init()
 
-def start_music(filename):
+def play_music(filename):
     """Load and play a music file once."""
     base_dir = os.path.dirname(__file__)
     path = os.path.join(base_dir, "themes", filename)
     pygame.mixer.music.load(path)
     pygame.mixer.music.play()  # joue une fois
+    log.logger.send(f"played {filename}", logging.DEBUG)
+
     return path  # retourne le path si besoin
 
 def loop_music():

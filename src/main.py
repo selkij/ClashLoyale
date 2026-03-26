@@ -5,6 +5,7 @@ import logging
 
 import input
 import settings
+from music.music import sound_init, play_music
 from utils import log
 
 log.Logger('debug.log', logging.DEBUG) # Will directly populate the logger variable
@@ -68,18 +69,17 @@ try:
 
     log.logger.send("Clash Loyale is ready ! hehehehaw", logging.INFO)
 
-# base initialisation
-sound_init()
-#deck_theme()
-start_music("combat.mp3")
-#combat_theme()
-#deck_theme()
-#hog_rider_sfx()
-#  actually running
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    sound_init()
+    play_music("combat.mp3")
+
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
+                input.handle_inputs(event)
+            if event.type == pygame.QUIT:
+                running = False
+
+        # pygame.display.flip()
 
         # Limits FPS to 60
         dt = clock.tick(60) / 1000
@@ -88,6 +88,5 @@ while running:
 except pygame.error as e:
     log.logger.send(e, logging.CRITICAL)
     close_game(True)
-
 
 pygame.quit()
