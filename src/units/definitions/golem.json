@@ -13,7 +13,10 @@
   "tower_damage": 600,
   "target": "unique",
   "radius":"None",
-  "spawn_unit":"min_golem",
+  "spawn_unit": [
+    "min_golem",
+    "min_golem"
+  ],
   "effect": [
     "recoil3",
     "resist-recoil1"

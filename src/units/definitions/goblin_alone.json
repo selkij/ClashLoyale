@@ -1,19 +1,18 @@
 {
-  "name": "min_golem",
+  "name": "goblin_alone",
   "elixir_cost": 0,
-  "pv": 700,
-  "damage": 400,
-  "freq_atk": 1,
-  "speed": 1.5,
-  "type": "rusheur",
+  "pv": 100,
+  "damage": 50,
+  "freq_atk": 3,
+  "speed": 3,
+  "type": "unit",
   "range": 1,
   "self_destruct": 0,
   "nb_unit": 1,
   "shield": "None",
-  "tower_damage": 400,
+  "tower_damage": 25,
   "target": "unique",
   "radius": "None",
   "spawn_unit": "None",
-  "effect": "recoil1"
+  "effect": "None"
 }
-

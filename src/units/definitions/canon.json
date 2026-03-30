@@ -1,0 +1,18 @@
+{
+  "name": "canon",
+  "elixir_cost": 3,
+  "pv": 400,
+  "damage": 70,
+  "freq_atk": 2,
+  "speed": "None",
+  "type": "infra",
+  "range": 7,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "tower_damage": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "None"
+}
