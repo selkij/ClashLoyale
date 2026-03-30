@@ -25,4 +25,5 @@ class Logger:
 
     def send(self, message, severity=logging.INFO):
         self.logger.log(severity, message, stacklevel=2)
-        print(f"{severity.real} - {message}")
+        if severity >= self.severity_threshold:
+            print(f"{severity.real} - {message}")
