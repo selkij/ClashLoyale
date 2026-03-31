@@ -1,23 +1,25 @@
 import logging
 
 import pygame
-import os
+from pygame.event import Event
 
 import constant
 from utils import log
 
+
 class Sound:
     def __init__(self):
         pygame.mixer.init()
-        log.logger.send("Initialized sound system", logging.DEBUG)
+        log.logger.send("Initialized sound system")
 
     # Music
     def play_music(self, filename):
         """Load and play a music file once."""
-        path = constant.SOUNDS_PATH / filename
+        path = constant.MUSIC_THEMES_PATH / filename
         pygame.mixer.music.load(path)
+
+        log.logger.send(f"Playing {filename}", logging.DEBUG)
         pygame.mixer.music.play()  # joue une fois
-        log.logger.send(f"played {filename}", logging.DEBUG)
 
         return path  # retourne le path si besoin
 
@@ -28,7 +30,6 @@ class Sound:
             log.logger.send("Set current music as looped infinitely.", logging.DEBUG)
         else:
             log.logger.send("No music is playing, cannot loop.", logging.WARNING)
-
 
     def stop_music(self):
         """Stop the currently playing music."""
@@ -44,18 +45,21 @@ class Sound:
             log.logger.send("No music is playing, cannot rewind.", logging.WARNING)
         else:
             pygame.mixer.music.rewind()
-            log.logger.send("Rewinded current music.", logging.DEBUG)
+            log.logger.send("Rewind current music.", logging.DEBUG)
 
     # SFX
     def start_sfx(self, filename):
-        """Play a SFX once or use loop() to loop it."""
+        """Play an SFX once or use loop() to loop it."""
         sfx = constant.SOUNDS_PATH / filename
         sfx = pygame.mixer.Sound(sfx)
+
+        log.logger.send(f"Playing sfx {filename}", logging.DEBUG)
         sfx.play()  # joue une fois
-        log.logger.send(f"played sfx {filename}", logging.DEBUG)
         return sfx  # retourne l'objet Sound pour pouvoir le boucler plus tard
 
     def loop_sfx(self, sfx):
         """Loop a sound infinitely."""
         sfx.play(loops=-1)
 
+    def tick(self, events: list[Event]):
+        pass

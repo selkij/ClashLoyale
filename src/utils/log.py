@@ -2,13 +2,14 @@ import logging
 
 logger = None
 
+
 class Logger:
     def __init__(self, log_file, severity_threshold):
         global logger
 
         self.log_file = log_file
         self.severity_threshold = severity_threshold
-        
+
         self.logger = logging.getLogger(f"{__name__}.Logger")
         self.logger.setLevel(self.severity_threshold)
 
@@ -17,7 +18,7 @@ class Logger:
             '%(asctime)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s',
             datefmt='%H:%M:%S'
         )
-        
+
         handler.setFormatter(formatter)
 
         self.logger.addHandler(handler)

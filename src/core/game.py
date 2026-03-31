@@ -1,12 +1,25 @@
 import pygame
+from pygame.event import Event
+
+from core.input import Input
+from core.sound import Sound
+from core.ui import UI
+from utils import log
 
 
 class Game:
     def __init__(self):
-        self.clock = pygame.time.Clock() # UI class MUST be instantiated first
+        self.ui = UI()
+        self.input = Input()
+        self.sound = Sound()
         self.running = True
-        self.dt = 0
 
-    def tick(self):
-        # Limits FPS to 60
-        self.dt = self.clock.tick(60) / 1000.0
+        log.logger.send("Initialized game")
+
+    def tick(self, events: list[Event], dt):
+        self.ui.render()
+
+        for event in events:
+            if event.type == pygame.QUIT:
+                self.running = False
+

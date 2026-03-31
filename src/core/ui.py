@@ -1,14 +1,14 @@
-import logging
 import pygame
+from pygame.event import Event
 
 import constant
+from core.input import Input
 from utils import log
 
 
 class UI:
     def __init__(self):
-        pygame.init()
-        pygame.font.init()
+
 
         self.screen_width = constant.SCREEN_WIDTH
         self.screen_height = constant.SCREEN_HEIGHT
@@ -23,7 +23,8 @@ class UI:
         self.icon = pygame.image.load(constant.SPRITES_PATH / "game_icon.png")
         pygame.display.set_icon(self.icon)
 
-        log.logger.send("Initialized UI and pygame", logging.DEBUG)
+        log.logger.send("Initialized UI and pygame")
 
-    def draw_background(self):
+    def render(self):
         self.screen.fill(constant.BACKGROUND_COLOR)
+
