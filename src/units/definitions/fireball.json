@@ -10,7 +10,6 @@
   "self_destruct": 1,
   "nb_unit": 1,
   "shield": "None",
-  "tower_damage": 500,
   "target": "zone",
   "radius": 2,
   "spawn_unit": "None",

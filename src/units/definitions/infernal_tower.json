@@ -3,8 +3,6 @@
   "elixir_cost": 5,
   "pv": 2500,
   "damage": 10,
-  "damage_mutliplicator": 3,
-  "limite_damage": 800
   "freq_atk": 1,
   "speed": "None",
   "type": "infra",
@@ -12,9 +10,11 @@
   "self_destruct": 0,
   "nb_unit": 1,
   "shield": "None",
-  "tower_damage": "None",
   "target": "unique",
   "radius": "None",
   "spawn_unit": "None",
-  "effect": "None"
+  "effect": {
+    "damage_mutliplicator": 3,
+    "limite_damage": 800
+  }
 }

@@ -1,0 +1,20 @@
+{
+  "name": "zappy",
+  "elixir_cost": 6,
+  "pv": 1200,
+  "damage": 800,
+  "freq_atk": 1,
+  "speed": 1,
+  "type": "unit",
+  "range": 6,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "zone",
+  "radius": "1",
+  "spawn_unit": "None",
+  "effect": {
+    "loging-hit": 3,
+    "hit_recoil": 1
+  }
+}
