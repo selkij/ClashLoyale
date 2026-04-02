@@ -5,6 +5,8 @@ import traceback
 import pygame
 
 from core.game import Game
+from units import unit
+from units.unit import Unit
 from utils import log
 
 

@@ -1,24 +1,34 @@
 import json
+import logging
 import os
+
+from constant import DEFINITIONS_PATH
+from utils import log
 
 
 class Unit:
     def __init__(self,name):
-        list_files=os.listdir("definitions")
+        self.name = name
+        list_files=os.listdir(DEFINITIONS_PATH)
         self.file=None
+
         for file in list_files:
             if file.startswith(name):
                 self.file = file
-        if self.file==None:
-            raise ValueError("File not found:",name)
+        self.verif()
+
+        self.data=json.load(open(DEFINITIONS_PATH / self.file))
+    def verif(self):
+        if self.file is None:
+            log.logger.send(f"Could not load unit {self.name}, file not found.", logging.ERROR)
+            return
         else:
-            print("File found success:",name)
-        data=json.load(open("definitions/"+self.file))
-        print(data)
+            log.logger.send(f"Loaded unit {self.name}", logging.DEBUG)
 
 
+def load_units():#-> list[Unit]
+    list_Units=[]
+    for file in os.listdir(DEFINITIONS_PATH):
+        if file.endswith(".json"):
+            pass
 
-            # Afficher les données pour vérifier le contenu
-
-test1=Unit("pekka")
-test2=Unit("mini_pekka")
