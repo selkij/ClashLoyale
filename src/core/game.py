@@ -21,6 +21,9 @@ class Game:
 
         self.main_menu = MainMenu(self.ui.screen, self.state)
         self.state.screens[GameState.MENU] = self.main_menu
+        self.game_screen = GameScreen(self.ui.screen, self.state)
+        self.state.screens[GameState.GAME] = self.game_screen
+
         self.sound.play_music("combat.mp3")
         self.sound.set_volume(1) # LA VALEUR DOIT ETRE ENTRE 0 ET 1
 
