@@ -75,3 +75,6 @@ class Sound:
 
     def tick(self, events: list[Event]):
         pass
+
+    def set_volume(self,volume):
+        pygame.mixer.music.set_volume(volume)
