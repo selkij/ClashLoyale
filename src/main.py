@@ -5,6 +5,7 @@ import traceback
 import pygame
 
 from core.game import Game
+from core.sound import Sound
 from utils import log
 
 

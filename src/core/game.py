@@ -17,7 +17,6 @@ class Game:
         self.ui = UI()
         self.input = Input(self.state)
         self.sound = Sound()
-
         self.main_menu = MainMenu(self.ui.screen, self.state)
         self.state.screens[GameState.MENU] = self.main_menu
 
