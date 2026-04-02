@@ -1,0 +1,26 @@
+{
+  "name": "golem",
+  "elixir_cost": 8,
+  "pv": 4000,
+  "damage": 600,
+  "freq_atk": 1,
+  "speed": 1,
+  "type": "rusheur",
+  "range":1,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "unique",
+  "radius":"None",
+  "spawn_unit": [
+    "min_golem",
+    "min_golem"
+  ],
+  "effect": {
+    "recoil": 3,
+    "resist-recoil": 2
+  }
+
+
+
+}

@@ -1,0 +1,22 @@
+{
+  "name": "goblin",
+  "elixir_cost": 2,
+  "pv": "None",
+  "damage": "None",
+  "freq_atk": "None",
+  "speed": "None",
+  "type": "spell",
+  "range": "None",
+  "self_destruct": 1,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "None",
+  "radius": "None",
+  "spawn_unit": [
+    "goblin_alone",
+    "goblin_alone",
+    "goblin_alone",
+    "goblin_alone"
+  ],
+  "effect": "None"
+}

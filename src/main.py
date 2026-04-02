@@ -6,6 +6,8 @@ import pygame
 
 from core.game import Game
 from core.sound import Sound
+from units import unit
+from units.unit import Unit
 from utils import log
 
 

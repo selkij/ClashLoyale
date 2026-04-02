@@ -1,0 +1,17 @@
+{
+  "name": "dart_goblin",
+  "elixir_cost": 3,
+  "pv": 150,
+  "damage": 30,
+  "freq_atk": 5,
+  "speed": 3,
+  "type": "unit",
+  "range": 7,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "None"
+}

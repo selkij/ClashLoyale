@@ -1,0 +1,19 @@
+{
+  "name": "mini_pekka",
+  "elixir_cost": 4,
+  "pv": 800,
+  "damage": 400,
+  "freq_atk": 2,
+  "speed": 2,
+  "type": "unit",
+  "range":1,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "tower_damage": 300,
+  "target": "unique",
+  "radius":"None",
+  "spawn_unit":"None",
+  "effect": "None"
+
+}

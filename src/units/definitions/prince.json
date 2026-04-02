@@ -1,0 +1,23 @@
+{
+  "name": "prince",
+  "elixir_cost": 5,
+  "pv": 1200,
+  "damage": 200,
+  "freq_atk": 1,
+  "speed": 1,
+  "type": "unit",
+  "range": 1,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "tower_damage": 150,
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": {
+    "charging_timer": 3,
+    "charching_speed": 4,
+    "charching_damage": 500,
+    "charching_tower_damage": 450
+  }
+}

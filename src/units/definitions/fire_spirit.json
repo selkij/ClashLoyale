@@ -1,0 +1,17 @@
+{
+  "name": "fire_spirit",
+  "elixir_cost": 1,
+  "pv": 100,
+  "damage": "80",
+  "freq_atk": 1,
+  "speed": 3,
+  "type": "unit",
+  "range": 3,
+  "self_destruct": 1,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "zone",
+  "radius": 2.5,
+  "spawn_unit": "None",
+  "effect": "None"
+}
