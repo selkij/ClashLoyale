@@ -9,12 +9,21 @@ from utils import log
 
 class Sound:
     def __init__(self):
-        pygame.mixer.init()
-        log.logger.send("Initialized sound system")
+        try:
+            pygame.mixer.init()
+            self.initialized = True
+            log.logger.send("Initialized sound system")
+        except pygame.error as e:
+            if "WASAPI" in str(e):
+                self.initialized = False
+                log.logger.send("Failed to initialize sound system", logging.WARNING)
 
     # Music
     def play_music(self, filename):
         """Load and play a music file once."""
+        if self.initialized == False:
+            log.logger.send("Sound not allowed", logging.WARNING)
+            return 0
         path = constant.MUSIC_THEMES_PATH / filename
         pygame.mixer.music.load(path)
 
@@ -49,6 +58,9 @@ class Sound:
 
     # SFX
     def start_sfx(self, filename):
+        if self.initialized == False:
+            log.logger.send("Sound not allowed", logging.WARNING)
+            return 0
         """Play an SFX once or use loop() to loop it."""
         sfx = constant.SOUNDS_PATH / filename
         sfx = pygame.mixer.Sound(sfx)

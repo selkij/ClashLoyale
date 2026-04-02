@@ -3,23 +3,36 @@ from pygame.event import Event
 
 from core.input import Input
 from core.sound import Sound
+from core.state import StateManager, GameState
 from core.ui import UI
+from levels.main_menu import MainMenu
 from utils import log
 
 
 class Game:
     def __init__(self):
-        self.ui = UI()
-        self.input = Input()
-        self.sound = Sound()
         self.running = True
+        self.state = StateManager(GameState.MENU)
+
+        self.ui = UI()
+        self.input = Input(self.state)
+        self.sound = Sound()
+
+        self.main_menu = MainMenu(self.ui.screen, self.state)
+        self.state.screens[GameState.MENU] = self.main_menu
+
+        # Add screens here with state definitions
+        # Example: self.test_menu = TestMenu(self.ui.screen, self.state)
+        #          self.state.screens[GameState.TEST] = self.test_menu
+        # For more info on how to create a scene, see test_screen.py
 
         log.logger.send("Initialized game")
 
     def tick(self, events: list[Event], dt):
         self.ui.render()
+        self.state.run_screen()
+        self.input.process(events)
 
         for event in events:
             if event.type == pygame.QUIT:
                 self.running = False
-
