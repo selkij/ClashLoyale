@@ -1,3 +1,4 @@
+import logging
 from enum import auto, IntEnum, StrEnum
 from pathlib import Path
 
@@ -13,19 +14,19 @@ BACKGROUND_COLOR = "#202020"
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 1000
 
+LOG_COLORS = {
+    logging.DEBUG: '\033[36m',  # Cyan
+    logging.INFO: '\033[32m',  # Green
+    logging.WARNING: '\033[33m',  # Yellow
+    logging.ERROR: '\033[31m',  # Red
+    logging.CRITICAL: '\033[35m',  # Magenta
+}
+LOG_COLORS_RESET = '\033[0m'
+
 
 class EventType(IntEnum):
     INPUT = auto()
     GAME = auto()
-
-
-class GameState(IntEnum):
-    MENU = 1
-    DECK_SELECTION = 2
-    GAME = 3
-    PAUSED = 4
-    END_GAME = 5
-    EXIT = 6
 
 
 class GameEvent(StrEnum):

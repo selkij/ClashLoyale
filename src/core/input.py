@@ -3,7 +3,7 @@ import logging
 import pygame
 from pygame.event import Event
 
-from constant import GameState
+from core.state import StateManager
 from utils import log
 
 
@@ -44,8 +44,9 @@ controller_keymap = {
 
 
 class Input:
-    def __init__(self):
+    def __init__(self, state_manager: StateManager):
         self.controllers = {}
+        self.state_manager = state_manager
 
         pygame.joystick.init()
         joystick_count = pygame.joystick.get_count()
@@ -67,7 +68,7 @@ class Input:
         self.controllers.pop(joy_id, pass_f)
         log.logger.send(f"Removed controller id {joy_id}")
 
-    def handle_input_events(self, event: pygame.event.Event, game_state: GameState):
+    def handle_input_events(self, event: pygame.event.Event):
         match event.type:
             case pygame.JOYDEVICEADDED:
                 self.register_controller(event.device_index)
@@ -86,6 +87,7 @@ class Input:
                 action(self.controllers[event.instance_id])
 
     def process(self, events: list[Event]):
-        pass
+        for event in events:
+            pass
 
 # See https://github.com/DaFluffyPotato/notquiteparadise/blob/758d8310413316abbee8e7e644ac7dd005b05cf8/scripts/nqp/processors/input.py#L18
