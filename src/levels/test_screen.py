@@ -1,7 +1,11 @@
+from core.state import StateManager
+
+
 class TestScreen:
-    def __init__(self, screen, game_state):
-        self.screen = screen
-        self.game_state = game_state
+    def __init__(self, modules: dict, state_manager: StateManager):
+        # Module definitions
+        self.ui = modules["ui"]
+        self.state_manager = state_manager
 
     def run(self):
-        self.screen.fill('red')
+        self.ui.screen.fill('red')

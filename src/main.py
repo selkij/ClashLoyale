@@ -29,8 +29,8 @@ def run():
 
         pygame.display.flip()
 
-
     pygame.quit()
+
 
 if __name__ == "__main__":
     try:

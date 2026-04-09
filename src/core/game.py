@@ -13,30 +13,27 @@ from utils import log
 class Game:
     def __init__(self):
         self.running = True
-        self.state = StateManager(GameState.GAME)
+        self.modules = {
+            "state": StateManager(GameState.MENU),
+            "ui": UI(),
+            "input": Input(),
+            "sound": Sound()
+        }
 
-        self.ui = UI()
-        self.input = Input(self.state)
-        self.sound = Sound()
-
-        self.main_menu = MainMenu(self.ui.screen, self.state)
-        self.state.screens[GameState.MENU] = self.main_menu
-        self.game_screen = GameScreen(self.ui.screen, self.state)
-        self.state.screens[GameState.GAME] = self.game_screen
-
-        self.sound.play_music("combat.mp3")
-        self.sound.set_volume(1) # LA VALEUR DOIT ETRE ENTRE 0 ET 1
+        self.main_menu = MainMenu(self.modules)
+        self.modules["state"].screens[GameState.MENU] = self.main_menu
 
         # Add screens here with state definitions
-        # Example: self.test_menu = TestMenu(self.ui.screen, self.state)
+        # Example: self.test_menu = TestMenu(self.modules, ...)
         #          self.state.screens[GameState.TEST] = self.test_menu
         # For more info on how to create a scene, see test_screen.py
         log.logger.send("Initialized game")
 
     def tick(self, events: list[Event], dt):
-        self.ui.render()
-        self.state.run_screen()
-        self.input.process(events)
+        self.modules["input"].process(events)
+        self.modules["ui"].handle_events(events)
+        self.modules["state"].run_screen()
+        self.modules["ui"].render()
 
         for event in events:
             if event.type == pygame.QUIT:

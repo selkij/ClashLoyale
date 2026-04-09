@@ -3,7 +3,6 @@ import logging
 import pygame
 from pygame.event import Event
 
-from core.state import StateManager
 from utils import log
 
 
@@ -44,9 +43,8 @@ controller_keymap = {
 
 
 class Input:
-    def __init__(self, state_manager: StateManager):
+    def __init__(self):
         self.controllers = {}
-        self.state_manager = state_manager
 
         pygame.joystick.init()
         joystick_count = pygame.joystick.get_count()

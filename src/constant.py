@@ -7,6 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent
 SOUNDS_PATH = BASE_DIR / "sounds"
 MUSIC_THEMES_PATH = SOUNDS_PATH / "themes"
 SPRITES_PATH = BASE_DIR / "sprites"
+WIDGETS_PATH = SPRITES_PATH / "widgets"
 FONTS_PATH = BASE_DIR / "fonts"
 
 TEXT_COLOR = "#EEEEEE"
