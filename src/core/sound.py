@@ -21,9 +21,10 @@ class Sound:
     # Music
     def play_music(self, filename):
         """Load and play a music file once."""
-        if self.initialized == False:
+        if not self.initialized:
             log.logger.send("Sound not allowed", logging.WARNING)
             return 0
+
         path = constant.MUSIC_THEMES_PATH / filename
         pygame.mixer.music.load(path)
 
@@ -55,10 +56,13 @@ class Sound:
         else:
             pygame.mixer.music.rewind()
             log.logger.send("Rewind current music.", logging.DEBUG)
+            
+    def set_volume(self,volume):
+        pygame.mixer.music.set_volume(volume)
 
     # SFX
     def start_sfx(self, filename):
-        if self.initialized == False:
+        if not self.initialized:
             log.logger.send("Sound not allowed", logging.WARNING)
             return 0
         """Play an SFX once or use loop() to loop it."""
@@ -76,5 +80,6 @@ class Sound:
     def tick(self, events: list[Event]):
         pass
 
-    def set_volume(self,volume):
-        pygame.mixer.music.set_volume(volume)
+    # Scene methods
+    def on_state_change(self):
+        self.stop_music()
