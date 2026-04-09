@@ -1,0 +1,18 @@
+{
+  "name": "x_bow",
+  "elixir_cost": 6,
+  "pv": 3000,
+  "damage": 40,
+  "freq_atk": 8,
+  "speed": "None",
+  "type": "infra",
+  "range": 12,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "tower_damage": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "None"
+}

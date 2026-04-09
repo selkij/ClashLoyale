@@ -1,0 +1,19 @@
+{
+  "name": "fireball",
+  "elixir_cost": 4,
+  "pv": "None",
+  "damage": 700,
+  "freq_atk": "None",
+  "speed": "None",
+  "type": "spell",
+  "range": "None",
+  "self_destruct": 1,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "zone",
+  "radius": 2,
+  "spawn_unit": "None",
+  "effect": {
+    "recoil": 2
+  }
+}

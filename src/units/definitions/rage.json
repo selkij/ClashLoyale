@@ -1,0 +1,20 @@
+{
+  "name": "rage",
+  "elixir_cost": 2,
+  "pv": "None",
+  "damage": 30,
+  "freq_atk": "None",
+  "speed": "None",
+  "type": "spell",
+  "range": "None",
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "tower_damage": 20,
+  "target": "zone",
+  "radius": 3,
+  "spawn_unit": "None",
+  "effect": {
+    "rage_timer": 5
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "knight",
+  "elixir_cost": 3,
+  "pv": 900,
+  "damage": 100,
+  "freq_atk": 1.5,
+  "speed": 1.5,
+  "type": "unit",
+  "range": 1,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "None"
+}

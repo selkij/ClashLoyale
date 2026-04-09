@@ -1,0 +1,19 @@
+{
+  "name": "giant",
+  "elixir_cost": 5,
+  "pv": 2500,
+  "damage": "None",
+  "freq_atk": 1,
+  "speed": 1,
+  "type": "rusheur",
+  "range": 1,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": {
+    "resist_recoil": 2
+  }
+}

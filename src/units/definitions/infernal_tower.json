@@ -1,0 +1,20 @@
+{
+  "name": "infernal_tower",
+  "elixir_cost": 5,
+  "pv": 2500,
+  "damage": 10,
+  "freq_atk": 1,
+  "speed": "None",
+  "type": "infra",
+  "range": 9,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": {
+    "damage_mutliplicator": 3,
+    "limite_damage": 800
+  }
+}

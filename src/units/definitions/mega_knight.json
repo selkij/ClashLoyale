@@ -1,0 +1,23 @@
+{
+  "name": "mega_knight",
+  "elixir_cost": 7,
+  "pv": 3500,
+  "damage": 250,
+  "freq_atk": 1.5,
+  "speed": 2,
+  "type": "unit",
+  "range": 1,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "tower_damage": 200,
+  "target": "zone",
+  "radius": 0.5,
+  "spawn_unit": "None",
+  "effect": {
+    "jump_min": 3,
+    "jump_max": 7,
+    "damage_jump": 600,
+    "resist_recoil": 2
+  }
+}

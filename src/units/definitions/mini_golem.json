@@ -1,0 +1,21 @@
+{
+  "name": "min_golem",
+  "elixir_cost": 0,
+  "pv": 700,
+  "damage": 400,
+  "freq_atk": 1,
+  "speed": 1.5,
+  "type": "rusheur",
+  "range": 1,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "tower_damage": 400,
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": {
+    "recoil": 1
+  }
+}
+

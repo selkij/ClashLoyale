@@ -1,0 +1,20 @@
+{
+  "name": "elexir_pump",
+  "elixir_cost": 6,
+  "pv": 1000,
+  "damage": 0,
+  "freq_atk": 0,
+  "speed": "None",
+  "type": "infra",
+  "range": 0,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "None",
+  "radius": 0,
+  "spawn_unit": "None",
+  "effect": {
+    "add_elexir": 1,
+    "freq_add_elexir": 3
+  }
+}

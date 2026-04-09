@@ -1,0 +1,20 @@
+{
+  "name": "zap",
+  "elixir_cost": 2,
+  "pv": "None",
+  "damage": 50,
+  "freq_atk": "None",
+  "speed": "None",
+  "type": "spell",
+  "range": "None",
+  "self_destruct": 1,
+  "nb_unit": 1,
+  "shield": "None",
+  "tower_damage": 30,
+  "target": "zone",
+  "radius": 1.5,
+  "spawn_unit": "None",
+  "effect": {
+    "stunt": 0.5
+  }
+}

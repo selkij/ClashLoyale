@@ -1,0 +1,17 @@
+{
+  "name": "goblin_alone",
+  "elixir_cost": 0,
+  "pv": 100,
+  "damage": 50,
+  "freq_atk": 3,
+  "speed": 3,
+  "type": "unit",
+  "range": 1,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "None"
+}

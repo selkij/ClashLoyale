@@ -1,0 +1,17 @@
+{
+  "name": "hogrider",
+  "elixir_cost": 4,
+  "pv": 1000,
+  "damage": 250,
+  "freq_atk": 2.5,
+  "speed": 3,
+  "type": "rusheur",
+  "range": 1,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "None"
+}

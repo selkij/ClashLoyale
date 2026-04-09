@@ -1,0 +1,20 @@
+{
+  "name": "rocket",
+  "elixir_cost": 6,
+  "pv": "None",
+  "damage": 1500,
+  "freq_atk": "None",
+  "speed": "None",
+  "type": "spell",
+  "range": "None",
+  "self_destruct": 1,
+  "nb_unit": 1,
+  "shield": "None",
+  "tower_damage": 800,
+  "target": "zone",
+  "radius": 1.5,
+  "spawn_unit": "None",
+  "effect": {
+    "recoil": 2
+  }
+}

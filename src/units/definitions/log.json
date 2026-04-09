@@ -1,0 +1,19 @@
+{
+  "name": "log",
+  "elixir_cost": 2,
+  "pv": "None",
+  "damage": 80,
+  "freq_atk": "None",
+  "speed": "None",
+  "type": "spell",
+  "range": "None",
+  "self_destruct": 1,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "rectangle",
+  "radius": 12,
+  "spawn_unit": "None",
+  "effect": {
+    "recoil": 1
+  }
+}
