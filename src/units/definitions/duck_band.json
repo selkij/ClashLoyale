@@ -1,0 +1,17 @@
+{
+  "name": "duck_band",
+  "elixir_cost": 3,
+  "pv": 10,
+  "damage": 75,
+  "freq_atk": 3.5,
+  "speed": 4,
+  "type": "unit",
+  "range": 2,
+  "self_destruct": 0,
+  "nb_unit": 4,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "None"
+}

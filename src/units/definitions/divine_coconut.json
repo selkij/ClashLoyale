@@ -1,0 +1,17 @@
+{
+  "name": "divine_coconut",
+  "elixir_cost": 10,
+  "pv": 9999,
+  "damage": 9999,
+  "freq_atk": 9,
+  "speed": 6,
+  "type": "unit",
+  "range": 1,
+  "self_destruct": 1,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "None"
+}

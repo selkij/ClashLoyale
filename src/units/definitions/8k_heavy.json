@@ -1,0 +1,17 @@
+{
+  "name": "8k_heavy",
+  "elixir_cost": 9,
+  "pv": 300,
+  "damage": 2,
+  "freq_atk": 0.25,
+  "speed": 0.5,
+  "type": "unit",
+  "range": 5,
+  "self_destruct": 0,
+  "nb_unit": 3,
+  "shield": "None",
+  "target": "Tower",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "None"
+}

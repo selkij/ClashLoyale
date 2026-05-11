@@ -1,0 +1,17 @@
+{
+  "name": "gock",
+  "elixir_cost": 9,
+  "pv": 750,
+  "damage": 750,
+  "freq_atk": 0.7,
+  "speed": 5,
+  "type": "unit",
+  "range": 1.5,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "10",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "Doom"
+}

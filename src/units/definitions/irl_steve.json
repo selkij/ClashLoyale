@@ -1,0 +1,17 @@
+{
+  "name": "irl_steve",
+  "elixir_cost": 3,
+  "pv": 60,
+  "damage": 7,
+  "freq_atk": 2,
+  "speed": 7.5,
+  "type": "unit",
+  "range": 2,
+  "self_destruct": 0,
+  "nb_unit": 10,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "4kHD"
+}

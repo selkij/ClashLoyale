@@ -1,0 +1,17 @@
+{
+  "name": "bald_frisk",
+  "elixir_cost": 5,
+  "pv": 20,
+  "damage": 1,
+  "freq_atk": 5,
+  "speed": 3,
+  "type": "unit",
+  "range": 0.5,
+  "self_destruct": 0,
+  "nb_unit": 3,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "Spare"
+}

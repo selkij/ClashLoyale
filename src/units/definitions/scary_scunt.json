@@ -1,0 +1,17 @@
+{
+  "name": "Scary_Scunt",
+  "elixir_cost": 9,
+  "pv": 125,
+  "damage": 40,
+  "freq_atk": 1.75,
+  "speed": 12,
+  "type": "unit",
+  "range": 1.2,
+  "self_destruct": 0,
+  "nb_unit": 2,
+  "shield": "50",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "Bleed"
+}

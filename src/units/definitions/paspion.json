@@ -1,0 +1,17 @@
+{
+  "name": "paspion",
+  "elixir_cost": 1,
+  "pv": 10,
+  "damage": 1,
+  "freq_atk": 3,
+  "speed": 5,
+  "type": "unit",
+  "range": 1,
+  "self_destruct": 0,
+  "nb_unit": 20,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "Pasteque"
+}

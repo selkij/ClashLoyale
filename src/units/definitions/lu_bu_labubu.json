@@ -1,0 +1,17 @@
+{
+  "name": "lu_bu_labubu",
+  "elixir_cost": 9,
+  "pv": 2250,
+  "damage": 125,
+  "freq_atk": 2.50,
+  "speed": 10,
+  "type": "unit",
+  "range": 2.5,
+  "self_destruct": 0,
+  "nb_unit": 2,
+  "shield": "50",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "enemy_vs_lover"
+}

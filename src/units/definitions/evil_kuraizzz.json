@@ -1,0 +1,17 @@
+{
+  "name": "evil_kuraizzz",
+  "elixir_cost": 7,
+  "pv": 1500,
+  "damage": 225,
+  "freq_atk": 1.25,
+  "speed": 7,
+  "type": "unit",
+  "range": 2.5,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "100",
+  "target": "unique",
+  "radius": "5",
+  "spawn_unit": "None",
+  "effect": "nah_he's_cheating"
+}

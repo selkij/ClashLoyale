@@ -1,0 +1,17 @@
+{
+  "name": "jason",
+  "elixir_cost": 5,
+  "pv": 1250,
+  "damage": 25,
+  "freq_atk": 0.5,
+  "speed": 1,
+  "type": "unit",
+  "range": 20,
+  "self_destruct": 0,
+  "nb_unit": 1,
+  "shield": "None",
+  "target": "unique",
+  "radius": "None",
+  "spawn_unit": "None",
+  "effect": "Kikimama"
+}
