@@ -5,7 +5,7 @@ Pygame copy of clash royale but bad, for an NSI project.
 ## Installation
 
 requirement : 
-- python 3.12
+- python 3.13
 - pip
 
 Command
@@ -16,9 +16,9 @@ Command
 ```
 ## Authors
 
-- [@Selkj](https://github.com/selkij)
+- [@Selkij](https://github.com/selkij)
 - [@Michalex37](https://github.com/Michalex37220)
-- [@Draco](https://github.com/Draco1661)
+- [@Draco1661](https://github.com/Draco1661)
 - [@Lapruche](https://github.com/Lapruche)
 
 
