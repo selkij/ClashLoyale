@@ -10,6 +10,8 @@ from levels.widgets.image_widget import ImageWidget
 from levels.widgets.text_widget import TextWidget
 
 
+BASE_UNIT_PATH = SPRITES_PATH / "blue_unit_png"
+
 class TestScreen(Scene):
 
     def __init__(self, modules: dict):
@@ -33,22 +35,24 @@ class TestScreen(Scene):
                 id="ImageWidgetTest"
             )
         ]
-
         for component in components:
             self.ui.add_component(component)
 
-        knight_path = SPRITES_PATH / "blue_unit_png" / "knight"
-
         run_frames = []
 
-        for file in sorted(Path(knight_path).glob("run*.png")):
-            run_frames.append(pygame.image.load(file).convert_alpha())
+
+        run_frames = Animation.load_animation(
+             BASE_UNIT_PATH,
+            "zappy",
+            "charge"
+        )
 
         self.run_animation = Animation(
             run_frames,
             frame_duration=0.12,
             loop=True
         )
+       
 
         self.knight_widget = ImageWidget(
             self.modules,
@@ -70,3 +74,7 @@ class TestScreen(Scene):
         self.run_animation.update(dt)
 
         self.knight_widget.image = self.run_animation.get_image()
+    
+    
+
+

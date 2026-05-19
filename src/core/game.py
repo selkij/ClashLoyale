@@ -54,7 +54,7 @@ class Game:
         # For more info on how to create a scene, see test_screen.py
 
         log.logger.send("Initialized game")
-        self.modules["state"].set_state(GameState.MENU)
+        self.modules["state"].set_state(GameState.TEST)
 
     def tick(self, events: list[Event], dt):
         self.modules["input"].process(events)
