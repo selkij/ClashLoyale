@@ -6,7 +6,8 @@ from utils import log
 
 def auto_scaling():
     """
-    Returns a scaling factor or adapted resolution based on screen size.
+    Returns the physical window size and the ratio used to fit the logical
+    game resolution inside the current screen.
     """
 
     info = pygame.display.Info()
@@ -20,11 +21,13 @@ def auto_scaling():
     scale_w = screen_w / base_w
     scale_h = screen_h / base_h
 
-    scale = min(scale_w, scale_h)
+    scale = max(0.01, min(scale_w, scale_h, 1))
+    window_w = max(1, int(base_w * scale))
+    window_h = max(1, int(base_h * scale))
 
-    if scale < 1:
-        new_w = int(base_w * scale)
-        new_h = int(base_h * scale)
-        return new_w, new_h
+    log.logger.send(
+        f"Auto scale ratio {scale:.3f}: logical {base_w}x{base_h}, window {window_w}x{window_h}",
+        constant.TRACE
+    )
 
-    return base_w, base_h
+    return window_w, window_h, scale

@@ -6,7 +6,6 @@ import pygame
 
 import constant
 from core.game import Game
-from core.scaling import auto_scaling
 from utils import log
 
 
@@ -21,14 +20,13 @@ def run():
     clock = pygame.time.Clock()
 
     log.logger.send("Clash Loyale is ready ! hehehehaw")
-    auto_scaling()
     while game.running:
         dt = clock.tick(60) / 1000  # FPS
         events = pygame.event.get()
 
         game.tick(events, dt)
 
-        pygame.display.flip()
+        game.modules["ui"].present()
 
     pygame.quit()
 

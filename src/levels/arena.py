@@ -180,7 +180,7 @@ class Arena(Scene):
             self.mouse_was_pressed = mouse_pressed
             return
 
-        mouse_pos = pygame.mouse.get_pos()
+        mouse_pos = self.ui.get_mouse_pos()
         for camp, card_index, rect in self.card_rects:
             if rect.collidepoint(mouse_pos):
                 self.selected_cards[camp] = card_index
@@ -296,7 +296,7 @@ class Arena(Scene):
         return position[1] <= self.arena_rect.centery
 
     def _draw_placement_preview(self):
-        mouse_pos = pygame.mouse.get_pos()
+        mouse_pos = self.ui.get_mouse_pos()
         if not self.arena_rect.collidepoint(mouse_pos):
             return
 
