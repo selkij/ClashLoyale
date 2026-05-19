@@ -35,6 +35,7 @@ def get_player(camp) -> Player | None:
 
 
 def reset():
+    global players
     players = []
 
     log.logger.send("Reset card decks.", logging.DEBUG)

@@ -11,6 +11,7 @@ from core.state import StateManager, GameState
 from core.ui import UI
 from levels.arena import Arena
 from levels.choose_deck_screen import ChooseDeckScreen
+from levels.end_game_screen import EndGameScreen
 from levels.main_menu import MainMenu
 from levels.test_screen import TestScreen
 from units.unit import Unit
@@ -39,6 +40,9 @@ class Game:
         self.arena_scene = Arena(self.modules)
         self.modules["state"].screens[GameState.GAME] = self.arena_scene
 
+        self.end_game_screen = EndGameScreen(self.modules)
+        self.modules["state"].screens[GameState.END_GAME] = self.end_game_screen
+
         self.registered_units = []
 
         for definition in os.listdir(DEFINITIONS_PATH):
@@ -65,5 +69,4 @@ class Game:
         for event in events:
             if event.type == pygame.QUIT:
                 self.running = False
-
 
