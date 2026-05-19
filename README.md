@@ -17,7 +17,7 @@ Command :
 ```
 ## Authors
 
-- [@Selkij](https://github.com/selkij)
+- [@selkij](https://github.com/selkij)
 - [@Michalex37](https://github.com/Michalex37220)
 - [@Draco1661](https://github.com/Draco1661)
 - [@Lapruche](https://github.com/Lapruche)
