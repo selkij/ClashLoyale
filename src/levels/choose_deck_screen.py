@@ -46,7 +46,7 @@ class ChooseDeckScreen(Scene):
                 self.modules,
                 (self.screen.get_width() / 1.5, self.screen.get_width() / 1.2),
                 self.ready_image,
-                lambda _: self.state_manager.set_state(GameState.MENU)
+                lambda _: self.state_manager.set_state(GameState.GAME)
             )
         ]
 

@@ -22,6 +22,7 @@ class MainMenu(Scene):
 
         play_sprite = asset.get_image(constant.WIDGETS_PATH / 'play_icon.png').convert_alpha()
         play_sprite = pygame.transform.scale(play_sprite, (96, 96))
+        test_sprite = self.ui.font_medium.render("TEST MAP", True, constant.TEXT_COLOR)
 
         components = [
             ButtonWidget(
@@ -29,6 +30,12 @@ class MainMenu(Scene):
                 (35, constant.SCREEN_HEIGHT - 120),
                 play_sprite,
                 lambda _: self.state_manager.set_state(GameState.DECK_SELECTION)
+            ),
+            ButtonWidget(
+                self.modules,
+                (145, constant.SCREEN_HEIGHT - 93),
+                test_sprite,
+                lambda _: self.state_manager.set_state(GameState.TEST)
             )
         ]
 
