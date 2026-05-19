@@ -15,6 +15,11 @@ CAMP_TO_UNIT_CAMP = {
     "rouge": "red",
 }
 
+PLACEMENT_COOLDOWN = 0.12
+CONTROLLER_PLACE_BUTTONS = {0, 2}
+CONTROLLER_PREVIOUS_BUTTONS = {4}
+CONTROLLER_NEXT_BUTTONS = {5}
+
 
 def draw_player_bars(screen, bar_width):
     pygame.draw.rect(screen, BLUE_COLOR, pygame.Rect(0, 0, bar_width, SCREEN_HEIGHT))
@@ -104,6 +109,7 @@ class Arena(Scene):
         self.mouse_was_pressed = False
         self.key_edges = set()
         self.controller_button_edges = {}
+        self.placement_cooldowns = {"bleu": 0, "rouge": 0}
         self.last_update_ms = pygame.time.get_ticks()
 
     def start(self):
@@ -130,6 +136,7 @@ class Arena(Scene):
         self.mouse_was_pressed = False
         self.key_edges = set()
         self.controller_button_edges = {}
+        self.placement_cooldowns = {"bleu": 0, "rouge": 0}
         self.last_update_ms = pygame.time.get_ticks()
 
         bar_width = 15
@@ -143,6 +150,7 @@ class Arena(Scene):
         now = pygame.time.get_ticks()
         dt = (now - self.last_update_ms) / 1000
         self.last_update_ms = now
+        self._update_placement_cooldowns(dt)
 
         self._handle_keyboard_input(dt)
         self._handle_controller_input(dt)
@@ -246,25 +254,45 @@ class Arena(Scene):
             button for button in range(controller.get_numbuttons())
             if controller.get_button(button)
         }
+        if controller.get_numhats() > 0:
+            hat_x, hat_y = controller.get_hat(0)
+            if hat_x < 0:
+                pressed_buttons.add("hat_left")
+            if hat_x > 0:
+                pressed_buttons.add("hat_right")
+            if hat_y > 0:
+                pressed_buttons.add("hat_up")
+            if hat_y < 0:
+                pressed_buttons.add("hat_down")
+
         previous_buttons = self.controller_button_edges.get(instance_id, set())
         new_buttons = pressed_buttons - previous_buttons
 
-        for card_index in range(4):
-            if card_index in new_buttons:
-                self.selected_cards[camp] = card_index
-
-        if 4 in new_buttons:
+        if new_buttons & CONTROLLER_PREVIOUS_BUTTONS:
             self._cycle_selected_card(camp, -1)
-        if 5 in new_buttons:
+        if new_buttons & CONTROLLER_NEXT_BUTTONS:
             self._cycle_selected_card(camp, 1)
-        if 0 in new_buttons:
+        if new_buttons & CONTROLLER_PLACE_BUTTONS:
             self._place_selected_card(camp, self.cursors[camp])
+
+        hat_cards = {
+            "hat_up": 0,
+            "hat_right": 1,
+            "hat_down": 2,
+            "hat_left": 3,
+        }
+        for action, card_index in hat_cards.items():
+            if action in new_buttons:
+                self._select_card(camp, card_index)
 
         self.controller_button_edges[instance_id] = pressed_buttons
 
     def _place_selected_card(self, camp, position):
         card_index = self.selected_cards[camp]
         player = self._get_player(camp)
+        if player is None or self.placement_cooldowns.get(camp, 0) > 0:
+            return
+
         unit_name = player.get_hand_card(card_index)
         if unit_name is None:
             return
@@ -279,10 +307,13 @@ class Arena(Scene):
         if player.elixir < elixir_cost:
             return
 
+        if not self.unit_manager.play_card(unit_name, CAMP_TO_UNIT_CAMP[camp], position):
+            return
+
         player.modify_elixir(-elixir_cost)
-        self.unit_manager.play_card(unit_name, CAMP_TO_UNIT_CAMP[camp], position)
         player.cycle_played_card(card_index)
         self.selected_cards[camp] = min(self.selected_cards[camp], len(player.hand_cards) - 1)
+        self.placement_cooldowns[camp] = PLACEMENT_COOLDOWN
 
     def _can_place(self, camp, definition, position):
         if not self.arena_rect.collidepoint(position):
@@ -368,6 +399,15 @@ class Arena(Scene):
 
     def _select_card_on_key(self, keys, key, camp, card_index):
         if self._key_pressed_once(keys, key):
+            self._select_card(camp, card_index)
+
+    def _select_card(self, camp, card_index):
+        player = self._get_player(camp)
+        if player is None:
+            return
+
+        visible_cards = min(4, len(player.hand_cards))
+        if card_index < visible_cards:
             self.selected_cards[camp] = card_index
 
     def _key_pressed_once(self, keys, key):
@@ -375,10 +415,17 @@ class Arena(Scene):
 
     def _cycle_selected_card(self, camp, offset):
         player = self._get_player(camp)
+        if player is None:
+            return
+
         visible_cards = min(4, len(player.hand_cards))
         if visible_cards == 0:
             return
         self.selected_cards[camp] = (self.selected_cards[camp] + offset) % visible_cards
+
+    def _update_placement_cooldowns(self, dt):
+        for camp in self.placement_cooldowns:
+            self.placement_cooldowns[camp] = max(0, self.placement_cooldowns[camp] - dt)
 
     def _check_game_over(self):
         winner = self.unit_manager.get_winner()

@@ -47,6 +47,7 @@ class GameUnit:
         self.inferno_damage = self.damage
         self.elixir_timer = 0
         self.spawn_damage_done = False
+        self.death_spawned = False
         self.dead = False
 
         self.animations = self._load_animations()
@@ -87,7 +88,7 @@ class GameUnit:
         self.target = manager.find_target_for(self)
         if self.target is None:
             self.state = "move" if self.speed > 0 else "idle"
-            self._update_charge(dt, moving=True)
+            self._update_charge(dt, moving=False)
             self.inferno_target_id = None
             self.inferno_damage = self.damage
             self._move_to_default_goal(dt, manager)
@@ -159,7 +160,14 @@ class GameUnit:
 
         if self.target_mode == "zone" or self.self_destruct:
             radius = manager.to_pixels(max(self.radius, 1))
-            manager.damage_area(self.target.position, radius, damage, self.camp, tower_damage=self._tower_damage_or(damage))
+            manager.damage_area(
+                self.target.position,
+                radius,
+                damage,
+                self.camp,
+                tower_damage=self._tower_damage_or(damage),
+                source_unit=self
+            )
             recoil = self._number(self.effect.get("hit_recoil", self.effect.get("recoil", 0)), 0)
             if recoil:
                 manager.apply_recoil_area(self.target.position, radius, recoil, self.camp)
@@ -168,7 +176,7 @@ class GameUnit:
             if self.effect.get("hit_recoil"):
                 manager.apply_recoil(self.target, self.position, self._number(self.effect.get("hit_recoil"), 0))
 
-        if self.effect.get("stunt"):
+        if self.effect.get("stunt") and self.target is not None and not self.target.dead:
             self.target.apply_stun(self._number(self.effect.get("stunt"), 0))
 
         if self.self_destruct:

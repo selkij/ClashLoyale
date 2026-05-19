@@ -26,9 +26,13 @@ class UnitManager:
         self.units = []
         self.next_id = 1
 
-    def spawn_unit(self, unit_name: str, camp: str, position: tuple[float, float], unit_count_override=None) -> GameUnit:
+    def spawn_unit(self, unit_name: str, camp: str, position: tuple[float, float], unit_count_override=None) -> GameUnit | None:
         unit_name = self._resolve_unit_name(unit_name)
+        if unit_name not in self.definitions:
+            return None
+
         definition = self.definitions[unit_name]
+        camp = self._normalize_camp(camp)
         unit_count = unit_count_override if unit_count_override is not None else self._number(definition.get("nb_unit"), 1)
         spawned = []
 
@@ -39,7 +43,7 @@ class UnitManager:
             self.units.append(unit)
             spawned.append(unit)
 
-        return spawned[0]
+        return spawned[0] if spawned else None
 
     def play_card(self, unit_name: str, camp: str, position: tuple[float, float]) -> bool:
         definition = self.get_definition(unit_name)
@@ -50,8 +54,7 @@ class UnitManager:
             self.cast_spell(definition, camp, pygame.Vector2(position))
             return True
 
-        self.spawn_unit(definition["name"], camp, position)
-        return True
+        return self.spawn_unit(unit_name, camp, position) is not None
 
     def get_definition(self, unit_name: str) -> dict | None:
         return self.definitions.get(self._resolve_unit_name(unit_name))
@@ -114,7 +117,11 @@ class UnitManager:
         return "egalite"
 
     def find_target_for(self, unit: GameUnit) -> GameUnit | None:
-        enemies = [enemy for enemy in self.units if enemy.camp != unit.camp and not enemy.dead]
+        unit_camp = self._normalize_camp(unit.camp)
+        enemies = [
+            enemy for enemy in self.units
+            if enemy.id != unit.id and self._normalize_camp(enemy.camp) != unit_camp and not enemy.dead
+        ]
         if not enemies:
             return None
 
@@ -136,29 +143,36 @@ class UnitManager:
 
         return min(valid_targets, key=lambda enemy: unit.distance_to(enemy))
 
-    def damage_area(self, center: pygame.Vector2, radius: float, damage: float, source_camp: str, tower_damage=None) -> None:
+    def damage_area(self, center: pygame.Vector2, radius: float, damage: float, source_camp: str, tower_damage=None, source_unit=None) -> None:
+        source_camp = self._normalize_camp(source_camp)
         for unit in self.units:
-            if unit.camp != source_camp and unit.position.distance_to(center) <= radius:
+            if source_unit is not None and unit.id == source_unit.id:
+                continue
+            if self._normalize_camp(unit.camp) != source_camp and unit.position.distance_to(center) <= radius:
                 unit.take_damage(tower_damage if unit.is_building and tower_damage is not None else damage)
 
     def heal_area(self, center: pygame.Vector2, radius: float, healing: float, source_camp: str) -> None:
+        source_camp = self._normalize_camp(source_camp)
         for unit in self.units:
-            if unit.camp == source_camp and unit.position.distance_to(center) <= radius:
+            if self._normalize_camp(unit.camp) == source_camp and unit.position.distance_to(center) <= radius:
                 unit.heal(healing)
 
     def rage_area(self, center: pygame.Vector2, radius: float, duration: float, source_camp: str) -> None:
+        source_camp = self._normalize_camp(source_camp)
         for unit in self.units:
-            if unit.camp == source_camp and unit.position.distance_to(center) <= radius:
+            if self._normalize_camp(unit.camp) == source_camp and unit.position.distance_to(center) <= radius:
                 unit.apply_rage(duration)
 
     def stun_area(self, center: pygame.Vector2, radius: float, duration: float, source_camp: str) -> None:
+        source_camp = self._normalize_camp(source_camp)
         for unit in self.units:
-            if unit.camp != source_camp and unit.position.distance_to(center) <= radius:
+            if self._normalize_camp(unit.camp) != source_camp and unit.position.distance_to(center) <= radius:
                 unit.apply_stun(duration)
 
     def apply_recoil_area(self, center: pygame.Vector2, radius: float, force_tiles: float, source_camp: str) -> None:
+        source_camp = self._normalize_camp(source_camp)
         for unit in self.units:
-            if unit.camp == source_camp or unit.position.distance_to(center) > radius:
+            if self._normalize_camp(unit.camp) == source_camp or unit.position.distance_to(center) > radius:
                 continue
             self.apply_recoil(unit, center, force_tiles)
 
@@ -250,6 +264,10 @@ class UnitManager:
         spawn_units = unit.definition.get("spawn_unit")
         if not isinstance(spawn_units, list):
             return
+        if unit.death_spawned:
+            return
+
+        unit.death_spawned = True
 
         for index, spawned_name in enumerate(spawn_units):
             offset = pygame.Vector2((index - 0.5) * 28, 0)
@@ -262,20 +280,29 @@ class UnitManager:
             "mini_golem": "min_golem",
             "elixir_pump": "elexir_pump",
             "inferno_tower": "infernal_tower",
-            "larry_army": "larry",
         }
         return aliases.get(unit_name, unit_name)
 
     def _load_definitions(self) -> dict[str, dict]:
         definitions = {}
-        for path in Path(DEFINITIONS_PATH).glob("*.json"):
+        for path in sorted(Path(DEFINITIONS_PATH).glob("*.json")):
             with open(path, encoding="utf-8") as definition_file:
                 data = json.load(definition_file)
-            definitions[data["name"]] = data
             definitions[path.stem] = data
-        definitions["elixir_pump"] = definitions.get("elexir_pump")
-        definitions["inferno_tower"] = definitions.get("infernal_tower")
+            if data["name"] == path.stem or data["name"] not in definitions:
+                definitions[data["name"]] = data
+
+        definitions["elixir_pump"] = definitions["elexir_pump"]
+        definitions["inferno_tower"] = definitions["infernal_tower"]
         return definitions
+
+    @staticmethod
+    def _normalize_camp(camp: str) -> str:
+        aliases = {
+            "bleu": "blue",
+            "rouge": "red",
+        }
+        return aliases.get(camp, camp)
 
     @staticmethod
     def _number(value, fallback: float) -> float:
