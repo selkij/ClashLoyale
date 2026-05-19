@@ -1,5 +1,5 @@
 # ClashLoyale
-Pygame copy of clash royale but bad, for an NSI project.
+Pygame copy of clash royale for an NSI project.
 
 > /!\ Will not work with Python 3.14 /!\
 ## Installation
@@ -7,10 +7,11 @@ Pygame copy of clash royale but bad, for an NSI project.
 requirement : 
 - python 3.13
 - pip
+- pygame
 
-Command
+Command : 
 ```bash
-  pip install -r requirement.txt
+  pip install -r requirement.txt # Install all dependencies
   cd src
   python3 main.py
 ```
