@@ -1,4 +1,4 @@
-
+import pygame
 
 class Animation:
     def __init__(self, frames, frame_duration, loop=True):
@@ -44,3 +44,21 @@ class Animation:
         self.timer = 0
         self.finished = False
 
+    @staticmethod
+    def load_animation(base_path, unit_name, animation_name):
+        animation_path = base_path / unit_name
+
+        frames = []
+
+        for file in sorted(animation_path.glob(f"{animation_name}*.png")):
+            frames.append(
+                pygame.image.load(file).convert_alpha()
+            )
+
+        if not frames:
+            raise FileNotFoundError(
+                f"Aucune frame trouvée pour "
+                f"{unit_name}/{animation_name}"
+            )
+
+        return frames

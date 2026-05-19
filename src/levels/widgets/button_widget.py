@@ -9,7 +9,8 @@ class ButtonWidget:
     def __init__(self, modules: dict, pos: tuple, image: pygame.Surface | tracked_surface.TrackedSurface,
                  action: Callable[[Any], None], id: str | None = None):
         # Module definitions
-        self.screen = modules["ui"].screen
+        self.ui = modules["ui"]
+        self.screen = self.ui.screen
         self.input = modules["input"]
 
         self.pos = pos
@@ -35,7 +36,7 @@ class ButtonWidget:
 
     def handle_event(self, event: pygame.event.Event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if self.button_rect.collidepoint(pygame.mouse.get_pos()):
+            if self.button_rect.collidepoint(self.ui.get_mouse_pos()):
                 self.action()
 
     def render(self):

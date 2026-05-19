@@ -16,6 +16,7 @@ class StateManager:
     def __init__(self, initial_state: GameState, screens: dict | None = None):
         self.state = initial_state
         self.screens = screens or {}
+        self.winner = None
 
     def run_screen(self):
         return self.screens[self.state].run()

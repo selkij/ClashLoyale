@@ -1,39 +1,30 @@
-import time
-
-# Elixir initial
-red_elixir = 7.0
-blue_elixir = 7.0
-
-# Temps de départ
-start_time = time.time()
-
-# Limite max d'élixir
 MAX_ELIXIR = 10
+START_ELIXIR = 5
+SINGLE_ELIXIR_DURATION = 120
+DOUBLE_ELIXIR_DURATION = 60
+ELIXIR_SECONDS = 2.8
 
-game = True
 
-while game:
+class ElixirSystem:
+    def __init__(self):
+        self.elapsed_time = 0
+        self.multiplier = 1
 
-    # Temps écoulé depuis le début de la partie
-    game_time = time.time() - start_time
+    def reset(self):
+        self.elapsed_time = 0
+        self.multiplier = 1
 
-    # skibidi ratio
-    if game_time < 120:  # 0:00 -> 2:00 = x1
-        regen_rate = 1 / 2.8  # 1 élixir toutes les 2.8 sec
+    def update(self, dt, players):
+        self.elapsed_time += dt
+        self.multiplier = self.get_multiplier()
+        amount = self.multiplier / ELIXIR_SECONDS * dt
 
-    elif game_time < 180:  # 2:00 -> 3:00 = x2
-        regen_rate = 2 / 2.8
+        for player in players:
+            player.modify_elixir(amount, log_change=False)
 
-    else:  # après 3:00 = x3
-        regen_rate = 3 / 2.8
-
-    # Temps entre chaque tick (60hz)
-    delta = 0.1
-    time.sleep(delta)
-
-    # Régénération
-    red_elixir += regen_rate * delta
-    blue_elixir += regen_rate * delta
-
-    red_elixir = min(red_elixir, MAX_ELIXIR)
-    blue_elixir = min(blue_elixir, MAX_ELIXIR)
+    def get_multiplier(self):
+        if self.elapsed_time < SINGLE_ELIXIR_DURATION:
+            return 1
+        if self.elapsed_time < SINGLE_ELIXIR_DURATION + DOUBLE_ELIXIR_DURATION:
+            return 2
+        return 3
